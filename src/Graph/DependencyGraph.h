@@ -1,5 +1,7 @@
 // The actual Dependency Graph that we're gonna be using 
 
+#pragma once
+
 #include <unordered_map>
 #include <string>
 #include <deque>

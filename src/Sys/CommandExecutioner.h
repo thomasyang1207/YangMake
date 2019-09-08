@@ -1,3 +1,5 @@
+#pragma once
+
 #include <unistd.h>
 #include <cstdlib>
 #include <cstring>
@@ -46,7 +48,7 @@ namespace ym {
 		            argv[i] = arg;
 		        }
 
-		        std::cout << "Trying local" << std::endl;
+		        //std::cout << "Trying local" << std::endl;
 		        
 		        //Try local first.
 		        char * argCom = (char *)calloc(com.size()+1, sizeof(char));
@@ -55,7 +57,7 @@ namespace ym {
 		        execv(argCom, argv);
 		        free(argCom);
 
-		        std::cout << "Trying bin" << std::endl;
+		        //std::cout << "Trying bin" << std::endl;
 
 		        //Try bin
 		        //chdir("/bin");
@@ -66,7 +68,7 @@ namespace ym {
 		        free(argCom);
 		        
 		        //if still here, then try to execute from usr functions
-				std::cout << "Trying usr/bin" << std::endl;
+				//std::cout << "Trying usr/bin" << std::endl;
 
 				//chdir("/usr/bin");
 		        path = "/usr/bin/" + com;
