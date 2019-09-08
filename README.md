@@ -6,4 +6,4 @@ Good question! It's a simple reimplementation of the well known make program on 
 
 ## So... Why? 
 
-¯\\_(ツ)_/¯
+¯\\\_(ツ)\_/¯
