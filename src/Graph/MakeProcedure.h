@@ -1,6 +1,7 @@
 #include <string>
 #include <unordered_map>
 #include <unordered_set>
+#include <iostream>
 
 namespace ym {
 	template <typename MakefileType, 
@@ -34,7 +35,6 @@ namespace ym {
 			// visited? 
 			if(visited.find(node) != visited.end()) return; // don't need to do anything anymore
 			visited.insert(node);
-
 
 			Recipe * recipe = recipeLookup[node];
 			for(auto& dep : recipe->dependencies) {

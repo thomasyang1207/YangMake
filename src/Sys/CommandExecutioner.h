@@ -45,15 +45,20 @@ namespace ym {
 		        	memcpy(arg, args[i-1].c_str(), args[i-1].size());
 		            argv[i] = arg;
 		        }
+
+		        std::cout << "Trying local" << std::endl;
 		        
 		        //Try local first.
 		        char * argCom = (char *)calloc(com.size()+1, sizeof(char));
 		        memcpy(argCom, com.c_str(), com.size());
 		        argv[0] = argCom;
-		        execv(com.c_str(), argv);
+		        execv(argCom, argv);
 		        free(argCom);
 
+		        std::cout << "Trying bin" << std::endl;
+
 		        //Try bin
+		        //chdir("/bin");
 		        std::string path = "/bin/" + com;
 		        argCom = (char *)calloc(path.size()+1, sizeof(char));
 		        memcpy(argCom, path.c_str(), path.size());
@@ -61,10 +66,13 @@ namespace ym {
 		        free(argCom);
 		        
 		        //if still here, then try to execute from usr functions
+				std::cout << "Trying usr/bin" << std::endl;
+
+				//chdir("/usr/bin");
 		        path = "/usr/bin/" + com;
 		        argCom = (char *)calloc(path.size()+1, sizeof(char));
 		        memcpy(argCom, path.c_str(), path.size());
-		        execv(path.c_str(), argv);
+		        execv(argCom, argv);
 		        free(argCom);
 		        
 		        std::cout << "Invalid Command : \"" << command << "\"" << std::endl;
