@@ -7,7 +7,6 @@ namespace ym {
 
 	template <typename RecipeType>
 	class Makefile {
-		// RecipeType specifies an implementation of a recipe. 
 	public:
 		Makefile() : numTargets(0) {}
 
@@ -26,6 +25,6 @@ namespace ym {
 		}
 
 		int numTargets;
-		std::deque<RecipeType> recipes; // a recipe has a NAME... 
+		std::deque<RecipeType> recipes;
 	};
 }

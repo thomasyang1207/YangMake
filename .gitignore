@@ -1,4 +1,5 @@
 bin/*
 CMakeFiles
 CMakeCache.txt
-"Makefile"
+Makefile
+!src/Makefile
