@@ -17,15 +17,25 @@ namespace ym {
 
 			while(std::getline(file, line)){
 				// if first character is a tab: then it's a command. Otherwise, it's a defining a new target or a blank line.
-				if(line.size() > 1 && line[0] == '\t') {
-					if(makefile.size() == 0) {
-						std::cout << "Command must be added to target" << std::endl;
-						exit(1);
+				// remove nbsp
+				line = RemoveInitialSpace(line);
+
+				if(line.size() > 0) {
+					if(line.size() > 1 && line[0] == '\t') {
+						if(makefile.size() == 0) {
+							std::cout << "Parse Error: Command must be added to target" << std::endl;
+							exit(1);
+						}
+						makefile.back().AddCommand(line.substr(1, line.size()-1));
+					} else if(line.size() > 1 && line[0] == '#') {
+						continue; 
 					}
-					makefile.back().AddCommand(line.substr(1, line.size()-1));
-				} else if(line.size() > 0) {
-					ProcessNewTarget(line, makefile);
+					else if(line.size() > 0) {
+						ProcessNewTarget(line, makefile);
+					}
 				}
+
+				
 			}
 
 		}
@@ -51,6 +61,12 @@ namespace ym {
 					makefile.back().AddDependency(word); // adds a dependency. 
 				}
 			}
+		}
+
+		static std::string RemoveInitialSpace(std::string& line) {
+			int i = 0;
+			while(i < line.size() && line[i] == ' ') i++;
+			return line.substr(i, line.size()-i);
 		}
 	};
 }
